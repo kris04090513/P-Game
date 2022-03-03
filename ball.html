@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>04 random balls move</title>
+
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #c2eaf4;
+      }
+      .rect {
+        position: relative;
+        width: 800px;
+        height: 800px;
+      }
+
+      .ball {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #4469cf;
+      }
+      .back {
+        position: absolute;
+        right: 5%;
+        bottom: 5%;
+      }
+      .btn-back {
+        width: 60px;
+        height: 45px;
+        background-color: rgb(0, 0, 0);
+        border-radius: 5px;
+        padding: 10px 20px;
+        color: white;
+      }
+      a {
+        text-decoration: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="rect"></div>
+    <div class="back">
+      <a href="index.html" class="btn-back">back</a>
+    </div>
+    <script>
+      //奔跑的BALLS
+      const rect = document.querySelector(".rect");
+      const balls = [];
+
+      for (let i = 0; i < 300; i++) {
+        const b = document.createElement("div");
+        b.className = "ball";
+        //Math.floor取整數 Math.random()*600 random 600次
+
+        b.style.left = Math.floor(Math.random() * 800) + "px";
+        b.style.top = Math.floor(Math.random() * 800) + "px";
+        //size random
+        const size = 10 + Math.floor(Math.random() * 21) + "px";
+        //保持正圓形
+        b.style.width = b.style.height = size;
+        //color random
+        // b.style.backgroundColor = `hsl(${Math.random() * 360},80%,50%)`
+        b.style.backgroundColor = `rgb(${Math.floor(
+          Math.random() * 255
+        )},${Math.floor(Math.random() * 255)},${Math.floor(
+          Math.random() * 255
+        )})`;
+
+        rect.append(b); //把參照放到DOM裡面
+
+        balls.push(b); //把所有的球丟到空陣列中
+      }
+
+      // function runBalls() {
+      //     balls.forEach(b => {
+
+      //         //將每一個BALL parseInt(b.style.top) 現在的位置  取出來 將它往上移動  取整數(隨機的*5 px)
+      //         b.style.top = parseInt(b.style.top) - 2 - Math.floor(Math.random() * 4) + 'px';
+
+      //         //讓泡泡左右抖動
+      //         b.style.left = parseInt(b.style.left) - (Math.floor(Math.random() * 5) - 2) + 'px';
+
+      //     });
+      //     //往上移動的時間速度
+      //     setTimeout(runBalls, 50);
+
+      // }
+      // runBalls();
+
+      function runBalls() {
+        balls.forEach((b) => {
+          b.style.top =
+            parseInt(b.style.top) - 2 - Math.floor(Math.random() * 4) + "px";
+
+          //讓泡泡左右抖動
+          b.style.left =
+            parseInt(b.style.left) - (Math.floor(Math.random() * 5) - 2) + "px";
+
+          // console.log(parseInt(b.style.top));
+          if (parseInt(b.style.top) < 0) {
+            //將每一個BALL parseInt(b.style.top) 現在的位置  取出來 將它往上移動  取整數(隨機的*5 px)
+            b.style.top = parseInt(b.style.top) + 800 + "px";
+          }
+        });
+        //往上移動的時間速度
+        setTimeout(runBalls, 50);
+      }
+      runBalls();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>14 多個眼球 隨著滑鼠轉動</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        min-height: 100vh;
+        background: #8fcde6;
+      }
+      .face {
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        background-color: #111110;
+        /* border: black 1px solid; */
+        border-radius: 50%;
+      }
+
+      .eye {
+        position: absolute;
+        left: 200px;
+        top: 300px;
+      }
+
+      .eye-white {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background-color: #ffffff;
+        /* 有border 會影響整個的範圍 */
+        /* border: black 1px solid; */
+        left: -40px;
+        top: -40px;
+      }
+
+      .eye-black {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #000000;
+        left: 0px;
+        top: -20px;
+      }
+      .back {
+        position: absolute;
+        right: 5%;
+        bottom: 5%;
+      }
+      .btn-back {
+        width: 60px;
+        height: 45px;
+        background-color: rgb(0, 0, 0);
+        border-radius: 5px;
+        padding: 10px 20px;
+        color: white;
+      }
+      a {
+        text-decoration: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="face">
+      <div class="eye" style="left: 200px; top: 300px">
+        <div class="eye-white"></div>
+        <div class="eye-black"></div>
+      </div>
+      <div class="eye" style="left: 400px; top: 300px">
+        <div class="eye-white"></div>
+        <div class="eye-black"></div>
+      </div>
+      <div class="eye" style="left: 300px; top: 200px">
+        <div class="eye-white"></div>
+        <div class="eye-black"></div>
+      </div>
+    </div>
+    <div class="back">
+      <a href="index.html" class="btn-back">back</a>
+    </div>
+    <script>
+      const eyes = document.querySelectorAll(".eye");
+
+      window.addEventListener("mousemove", function (event) {
+        eyes.forEach((eye) => {
+          // 這裡只會抓到行內元素的style
+          const dx = event.pageX - parseInt(eye.style.left);
+          const dy = event.pageY - parseInt(eye.style.top);
+
+          //Math.atan2(dy, dx) 是在算眼球轉動在atan第幾象限
+          eye.style.transform = `rotate(${
+            (Math.atan2(dy, dx) / Math.PI) * 180
+          }deg)`;
+        });
+      });
+    </script>
+  </body>
+</html>
