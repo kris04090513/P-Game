@@ -19,6 +19,7 @@
       integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
       crossorigin="anonymous"
     />
+    <!-- 引入css檔 -->
     <link rel="stylesheet" href="download-animation-style.css" />
   </head>
 
@@ -34,12 +35,14 @@
       </div>
     </a>
     <div class="back">
-      <a href="index.html" class="btn-back">back</a>
+      <a href="./../index.html" class="btn-back">back</a>
     </div>
     <script>
       const btn = document.querySelector(".btn");
+      //  點了之後會加上active 的class
       btn.addEventListener("click", () => {
         btn.classList.add("active");
+        // 當時間13000毫秒到後移除class
         setTimeout(() => {
           btn.classList.remove("active");
         }, 13000);

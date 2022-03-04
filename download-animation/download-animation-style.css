@@ -1,5 +1,6 @@
+/* download-animation-style.css */
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
+/* 初始化 */
 * {
   margin: 0;
   padding: 0;
@@ -15,7 +16,7 @@ body {
   background: #222;
   min-height: 100vh;
 }
-
+/* 按鈕 */
 .btn {
   position: relative;
   width: 200px;
@@ -31,7 +32,7 @@ body {
   transition-delay: 0.5s;
   overflow: hidden;
 }
-
+/* icon  的間距 */
 .btn .fas {
   margin-right: 8px;
 }
@@ -59,17 +60,19 @@ body {
   white-space: nowrap;
   color: #222;
 }
+/* 完成動畫後出現的 */
 .btn.active .completed {
   animation: top_bottom 1.3s linear forwards;
   animation-delay: 6.5s;
 }
+/*  點了btn 後新增的class */
 .btn.active {
   width: 600px;
   height: 15px;
   animation: btn_width 4.5s linear forwards;
   animation-delay: 5s;
 }
-
+/* 進度條開始  */
 .btn.active::before {
   content: "";
   position: absolute;
@@ -78,9 +81,11 @@ body {
   width: 0;
   height: 0;
   background: #009bf8;
+  /*  */
   animation: before_active 10s linear forwards;
   animation-delay: 1.5s;
 }
+/* 的動做前 */
 .btn.active::after {
   content: "\f00c";
   position: absolute;
@@ -94,7 +99,7 @@ body {
   animation-delay: 8.5s;
 }
 
-
+/* 進度條跑的動畫 */
 @keyframes before_active {
   0% {
     width: 0%;
@@ -111,6 +116,7 @@ body {
     height: 0%;
   }
 }
+
 @keyframes btn_width {
   0% {
     width: 600px;
@@ -158,12 +164,11 @@ body {
     transform: translate(-50%, -50%);
   }
 }
-
+/* 圈圈打勾勾 */
 @keyframes check_scale {
   0% {
     transform: translate(-50%, -50%) scale(0);
   }
-
   20%,
   90% {
     transform: translate(-50%, -50%) scale(1.3);
@@ -172,6 +177,7 @@ body {
     transform: translate(-50%, 100px) scale(1.3);
   }
 }
+/* 回前一頁的按鈕 */
   .back {
         position: absolute;
         right: 5%;
