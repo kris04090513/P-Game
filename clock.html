@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2021 12 09 02 Clock 註解</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #0a182b;
+      }
+      .clock {
+        /* 背景底圖 */
+        position: relative;
+        width: 350px;
+        height: 350px;
+        justify-content: center;
+        align-items: center;
+
+        background-color: #d2edfd;
+        border: #091921 4px solid;
+        border-radius: 50%;
+        box-shadow: 0 -15px 15px rgba(255, 255, 255, 0.05),
+          inset 0 -15px 15px rgba(255, 255, 255, 0.05),
+          0 15px 15px rgba(0, 0, 0, 0.3), inset 0 15px 15px (0, 0, 0, 0.3);
+      }
+
+      .hand {
+        /* 將圓的中心點移位 */
+        position: absolute;
+        /* 將整個區塊往下往右移 */
+        left: 150px;
+        top: 150px;
+      }
+
+      .sec-hand {
+        /* 秒針的圖 */
+        position: absolute;
+        width: 6px;
+        height: 140px;
+        border-radius: 6px;
+        background-color: #0a1958;
+        left: -3px;
+        top: -277px;
+      }
+
+      .min-hand {
+        /* 分針的圖 */
+        position: absolute;
+        width: 10px;
+        height: 100px;
+        border-radius: 10px;
+        background-color: #dfd049;
+        left: -5px;
+        top: -200px;
+      }
+
+      .hour-hand {
+        /* 時針的圖 */
+        position: absolute;
+        width: 10px;
+        height: 80px;
+        border-radius: 10px;
+        background-color: #497edf;
+        left: -5px;
+        top: -100px;
+      }
+      .rect {
+        width: 350px;
+        height: 350px;
+        right: 200px;
+        position: static;
+      }
+      .ball {
+        /* 每一個裝數字的地方 */
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        color: rgb(5, 23, 80);
+        font-size: 50px;
+      }
+
+      /* .tickc {
+        position: absolute;
+      }
+
+      .tick {
+        position: absolute;
+        width: 1px;
+        height: 20px;
+        background-color: #666666;
+        top: -300px;
+      } */
+    </style>
+  </head>
+
+  <body>
+    <div id="info"></div>
+
+    <div class="clock">
+      <!-- 圓形時鐘 -->
+      <div class="hand" id="ticks_container">
+        <!-- 裝刻度的地方 -->
+        <div class="tickc">
+          <div class="tick"></div>
+        </div>
+      </div>
+      <div class="hand" id="sec_hand">
+        <div class="sec-hand">
+          <!-- 秒針的 -->
+        </div>
+      </div>
+      <div class="hand" id="min_hand">
+        <div class="min-hand">
+          <!-- 分針的 -->
+        </div>
+      </div>
+      <div class="hand" id="hour_hand">
+        <div class="hour-hand">
+          <!-- 時針的 -->
+        </div>
+      </div>
+      <div class="rect">
+        <!-- 裝數字的地方 -->
+      </div>
+    </div>
+
+    <script>
+      //裝所有數字的容器
+      const rect = document.querySelector(".rect");
+      //時鐘的數字
+      const ballNum = 12;
+      // radian, 弧度 ==> 2 拍的是360度 (不要問請去找維基百科!!!) ==> 弧度->360度/12格 =30度
+      const angUnit = (2 * Math.PI) / ballNum;
+
+      // 數字從1開始 i<=12 ,i++
+      for (let i = 1; i <= ballNum; i++) {
+        //建立 div 進到HTML
+        const b = document.createElement("div");
+        //給div className 為Ball
+        b.className = "ball";
+        //把i 轉成字串
+        b.innerHTML = i.toString();
+        //要把中心點'300 '向left 向top推 250 半徑是擴張的範圍 \ cos 管x sin管 y \ angUnit 是30度 2 * Math.PI / 4 =>要把原本的數字轉向90度
+        //Math.PI 有分大小寫~~ Math.PI 有分大小寫~~ Math.PI 有分大小寫~~ 很重要要說3 次XD
+        b.style.left =
+          300 + 250 * Math.cos(angUnit * i - (2 * Math.PI) / 4) + "px";
+        b.style.top =
+          300 + 250 * Math.sin(angUnit * i - (2 * Math.PI) / 4) + "px";
+        rect.append(b);
+      }
+
+      //秒針要出現在HTML
+      const sec_hand = document.querySelector("#sec_hand");
+      //分針要出現在HTML
+      const min_hand = document.querySelector("#min_hand");
+      //時針要出現在HTML
+      const hour_hand = document.querySelector("#hour_hand");
+
+      //裝所有刻度的容器
+      const tc = document.querySelector("#ticks_container");
+
+      let str = "";
+      // i 要算刻度
+      for (let i = 0; i < 60; i++) {
+        let myStyle = "";
+        if (i % 5 === 0) {
+          // 每五個的時候做一下變化
+          myStyle = "width: 4px; height: 30px; left: -2px;";
+        }
+
+        // 每6度產生一個刻度
+        str += `<div class="tickc" style="transform: rotate(${i * 6}deg);">
+                <div class="tick" style="${myStyle}"></div>
+            </div>`;
+      }
+      tc.innerHTML = str;
+
+      //時間的function
+      function runClock() {
+        //獲得現在的時間
+        const now = new Date();
+        //將現在的時間轉成字串用空白切出index 是4的值
+        info.innerHTML = now.toString().split(" ")[4];
+
+        //取出秒數
+        const s = now.getSeconds();
+        //取出分數
+        const m = now.getMinutes();
+        //取出小時
+        const h = now.getHours();
+        //取出毫秒
+        const ms = now.getMilliseconds();
+
+        /*
+            這邊的寫法會讓時鐘不會一格一格的跳
+            1秒=1000毫秒 => 每一秒轉6 度 所以1 毫秒轉0.006度
+            1分=60 秒 => 每一分鐘會轉6度 所以1 秒轉0.1度
+            1小時 = 60 分=> 每一小時會轉30度 所以1分鐘要轉0.5度
+            */
+
+        //s*6 =>當秒數s 有變時會轉6度 \ms * 0.006 在1秒內的每1 毫秒變的時候轉0.006度
+        sec_hand.style.transform = `rotate(${ms * 0.006 + s * 6}deg)`;
+        //m*6 =>當分數m 有變時會轉6度 \ s * 0.1 在一分鐘內的每1 秒變的時候轉0.1度
+        min_hand.style.transform = `rotate(${s * 0.1 + m * 6}deg)`;
+        //h * 30=>當小時h 有變時會轉30度 \ m * 0.5 在一小時內的每1 分鐘變的時候轉0.5度
+        hour_hand.style.transform = `rotate(${m * 0.5 + h * 30}deg)`;
+
+        //1000 毫秒是1 秒 每一秒跑一次 30是老師說的 人肉眼可接受的範圍?!
+        setTimeout(runClock, 30);
+      }
+      runClock(); //執行時間的function
+    </script>
+  </body>
+</html>
