@@ -1,205 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>kris的小遊戲練習</title>
-<style>
-    body{
-         display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        background: #18191a;
-    }
-    .container{
-        width: 100%;
-        padding-right: 0.75em;
-        padding-left: 0.75em;
-        margin-right: auto;
-        margin-left: auto;
-        max-width: 1140px;
-        min-width: 768px;
-    
-    }
-    .row{
-        display: flex;
-        flex-wrap: wrap;
-        margin-top: 5%;
-        width: 100%;
-        max-width: 100%;
-        
-    }
-    .col-4{
-        flex:  0 0 auto;
-        width: 33.3333333%;
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #18191a;
+        }
 
-    }
-    .card{
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        min-width: 0;
-        word-wrap: break-word;
-        background-color: aliceblue;
-        background-clip: border-box;
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        border-radius: 0.25rem;
-        padding: 5% 2%;
-        margin: 5% 2% ;
-    }
-    .btn-link{
-        position: relative;   
-        border-radius: 0.25rem;
-        background-color: #334d8f;
-        padding: 10px 20px;
-        text-align: center;
-    }
-    a{
-        text-decoration: none;
-        color: whitesmoke;}
-    h2{
-        color: whitesmoke;
-    }
-    .tags{
-        display: flex;
-    }
-    .tag{
-        font-size: 0.8rem;
-        padding: 3px 10px;
-        background-color: rgb(191, 221, 142);
-        margin: 10px 5px;
-        border-radius: 3px;
+        .container {
+            width: 100%;
+            padding-right: 0.75em;
+            padding-left: 0.75em;
+            margin-right: auto;
+            margin-left: auto;
+            max-width: 1140px;
+            min-width: 768px;
 
-    }
-</style>
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 2%;
+            width: 100%;
+            max-width: 100%;
+
+        }
+
+        .col-4 {
+            flex: 0 0 auto;
+            width: 33.3333333%;
+
+        }
+
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: aliceblue;
+            background-clip: border-box;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 0.25rem;
+            padding: 5% 2%;
+            margin: 5% 2%;
+        }
+
+
+        .btn-link {
+            position: relative;
+            border-radius: 0.25rem;
+            background-color: #334d8f;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+            color: whitesmoke;
+        }
+
+        h2 {
+            color: whitesmoke;
+        }
+
+        .tags {
+            display: flex;
+        }
+
+        .tag {
+            font-size: 0.8rem;
+            padding: 3px 10px;
+            background-color: rgb(191, 221, 142);
+            margin: 10px 5px;
+            border-radius: 3px;
+
+        }
+    </style>
 </head>
+
 <body>
-    
-<div class="container">
-    <div class="row">
-        <h2>遊戲 ｜ 動畫特效切版</h2>
+
+    <div class="container">
+        <div class="row">
+            <h2>遊戲 ｜ 動畫特效切版</h2>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="card">
+
+                    <img src="./img/01.png" alt="">
+                    </img>
+
+                    <h5>眼睛動動嘴巴動動</h5>
+                    <div class="tags">
+                        <p class="tag">CSS </p>
+                        <p class="tag">javascript</p>
+                    </div>
+                    <a href=eyes.html class="btn-link">點我試試</a>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <img src="./img/02.png" alt="">
+
+                    </img>
+                    <h5>隨機色彩選擇器</h5>
+                    <div class="tags">
+                        <p class="tag">jquery </p>
+                        <p class="tag">CSS</p>
+                    </div>
+                    <a href=colorpick.html class="btn-link">點我試試</a>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <img src="./img/03.png" alt="">
+
+                    </img>
+                    <h5>畫布畫球球</h5>
+                    <div class="tags">
+                        <p class="tag">javascript</p>
+                    </div>
+                    <a href=drawball.html class="btn-link">點我試試</a>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <img src="./img/04.png" alt="">
+
+                    </img>
+                    <h5>移動方塊</h5>
+                    <div class="tags">
+                        <p class="tag">jquery </p>
+                        <p class="tag">CSS</p>
+                    </div>
+                    <a href=cubemove.html class="btn-link">點我試試</a>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <img src="./img/05.png" alt="">
+                    </img>
+                    <h5>下載按鈕動畫</h5>
+                    <div class="tags">
+                        <p class="tag">CSS </p>
+                        <p class="tag">javascript</p>
+                    </div>
+                    <a href=download-animation/download-animation.html class="btn-link">點我試試</a>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="card">
+                    <img src="./img/06.png" alt="">
+
+                    </img>
+                    <h5>奔跑的皮卡丘</h5>
+                    <div class="tags">
+                        <p class="tag">CSS</p>
+                    </div>
+                    <a href=runman/runman.html class="btn-link">點我試試</a>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <img src="./img/07.png" alt="">
+
+                    </img>
+                    <h5>隨機泡泡</h5>
+                    <div class="tags">
+                        <p class="tag">javascript</p>
+                    </div>
+                    <a href=ball.html class="btn-link">點我試試</a>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <img src="./img/08.png" alt="">
+
+                    </img>
+                    <h5>計算機</h5>
+                    <div class="tags">
+                        <p class="tag">CSS </p>
+                        <p class="tag">javascript</p>
+                    </div>
+                    <a href=calculator.html class="btn-link">點我試試</a>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <img src="./img/09.png" alt="">
+
+                    </img>
+                    <h5>三眼怪</h5>
+                    <div class="tags">
+                        <p class="tag">CSS </p>
+                        <p class="tag">javascript</p>
+                    </div>
+                    <a href=threeeyes.html class="btn-link">點我試試</a>
+                </div>
+
+            </div>
+
+        </div>
     </div>
-    <div class="row">
-    <div class="col-4">
-        <div class="card">
-            <img src="" alt="">
-                
-            </img>
-            <h5>眼睛動動嘴巴動動</h5>
-       <div class="tags">
-            <p class="tag">CSS </p>
-            <p class="tag">javascript</p>
-        </div>
-            <a href=eyes.html class="btn-link">點我試試</a>
-        </div>  
-    </div>
-         <div class="col-4">
-         <div class="card">
-            <img src="" alt="">
-                
-            </img>
-            <h5>計算機</h5>
-              <div class="tags">
-            <p class="tag">CSS </p>
-            <p class="tag">javascript</p>
-        </div>
-            <a href=calculator.html class="btn-link">點我試試</a>
-        </div>
-    </div>
-    <div class="col-4">
-         <div class="card">
-            <img src="" alt="">
-                
-            </img>
-            <h5>三眼怪</h5>
-               <div class="tags">
-            <p class="tag">CSS </p>
-            <p class="tag">javascript</p>
-        </div>
-         <a href=threeeyes.html class="btn-link">點我試試</a>
-        </div>
-        
-    </div>
-        <div class="col-4">
-        <div class="card">
-            <img src="" alt="">
-                
-            </img>
-            <h5>隨機泡泡</h5>
-               <div class="tags">
-            <p class="tag">javascript</p>
-        </div>
-            <a href=ball.html class="btn-link">點我試試</a>
-        </div>  
-    </div>
-         <div class="col-4">
-         <div class="card">
-            <img src="" alt="">
-                
-            </img>
-            <h5>畫布畫球球</h5>
-               <div class="tags">
-            <p class="tag">javascript</p>
-        </div>
-            <a href=drawball.html class="btn-link">點我試試</a>
-        </div>
-    </div>
-    <div class="col-4">
-         <div class="card">
-            <img src="" alt="">
-                
-            </img>
-            <h5>下載按鈕動畫</h5>
-            <div class="tags">
-            <p class="tag">CSS </p>
-            <p class="tag">javascript</p>
-        </div>
-         <a href=download-animation/download-animation.html class="btn-link">點我試試</a>
-        </div>
-        
-    </div>
-      <div class="col-4">
-         <div class="card">
-            <img src="" alt="">
-                
-            </img>
-            <h5>移動方塊</h5>
-            <div class="tags">
-            <p class="tag">jquery </p>
-            <p class="tag">CSS</p>
-        </div>
-         <a href=cubemove.html class="btn-link">點我試試</a>
-        </div>
-    </div>
-    <div class="col-4">
-         <div class="card">
-            <img src="" alt="">
-                
-            </img>
-            <h5>隨機色彩選擇器</h5>
-            <div class="tags">
-            <p class="tag">jquery </p>
-            <p class="tag">CSS</p>
-        </div>
-         <a href=colorpick.html class="btn-link">點我試試</a>
-        </div>
-    </div>
-      <div class="col-4">
-         <div class="card">
-            <img src="" alt="">
-                
-            </img>
-            <h5>奔跑的皮卡丘</h5>
-            <div class="tags">
-            <p class="tag">CSS</p>
-        </div>
-         <a href=runman/runman.html class="btn-link">點我試試</a>
-        </div>
-    </div>
-</div>
-</div>
 
 </body>
+
 </html>

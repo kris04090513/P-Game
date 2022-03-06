@@ -9,7 +9,7 @@ body{
     align-items: center;
     justify-content: center;
     /* 漸層背景 */
-    background: radial-gradient(#009be4, #009be4);
+    background: radial-gradient(#accedd, #0288c7);
 }
 .road{
     position: absolute;
@@ -67,4 +67,20 @@ body{
 #runner{
     z-index: 4;
     transform: translateY(-50%);
+}
+.back {
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+}
+.btn-back {
+    width: 60px;
+    height: 45px;
+    background-color: rgb(0, 0, 0);
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: white;
+}
+a {
+    text-decoration: none;
 }
