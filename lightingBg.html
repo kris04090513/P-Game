@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>光線墜落特效</title>
+    <style>
+      body {
+        margin: 0;
+        background-color: black;
+        overflow: hidden;
+        display: grid;
+        place-content: center;
+        height: 100vh;
+      }
+
+      h1 {
+        position: relative;
+        z-index: 2;
+        font: 4vw sans-serif;
+        color: white;
+      }
+
+      h1:after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.95) 100%
+        );
+      }
+
+      .line {
+        position: absolute;
+        width: 1px;
+        /* background-color: rgba(255, 255, 255, 0.1); */
+        height: 100vh;
+        z-index: 1;
+      }
+
+      .line::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 150px;
+
+        /* background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0),
+          rgba(0, 230, 250, 0.8)
+        );
+        animation: fall var(--ani-duration) var(--ani-delay) linear infinite; */
+
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0),
+          var(--line-color)
+        );
+        animation: fall var(--ani-duration) var(--ani-delay) linear infinite;
+      }
+
+      @keyframes fall {
+        0% {
+          top: -100px;
+        }
+
+        100% {
+          top: 100%;
+        }
+      }
+      .back {
+        position: absolute;
+        right: 5%;
+        bottom: 5%;
+      }
+      .btn-back {
+        width: 60px;
+        height: 45px;
+        /* background-color: rgb(0, 0, 0); */
+        border-radius: 5px;
+        padding: 10px 20px;
+        color: white;
+      }
+      a {
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 參考範例https://codepen.io/thisWeb1225/pen/MWNQBmE -->
+    <h1>Background Lighting</h1>
+    <div class="back">
+      <a href="index.html" class="btn-back">back</a>
+    </div>
+  </body>
+  <script>
+    const lineCount = 40
+
+    for (let i = 1; i <= lineCount; i++) {
+      const line = document.createElement('div')
+      line.classList.add('line')
+
+      // 隨機設定顏色
+      const r = Math.floor(Math.random() * 255)
+      const g = Math.floor(Math.random() * 255)
+      const b = Math.floor(Math.random() + 100 * 255)
+      const color = `rgba(${r}, ${g}, ${b}, 0.8)`
+
+      line.style.setProperty(
+        'left',
+        `${i * (100 / lineCount) + Math.random() * 5 - 5}%`
+      )
+      line.style.setProperty('--ani-duration', 8 + Math.random() * 10 + 's')
+      line.style.setProperty('--ani-delay', -Math.random() * 10 + 's')
+
+      // 讓每條線的顏色變化時間隨機
+      line.style.setProperty(
+        '--color-change-duration',
+        2 + Math.random() * 5 + 's'
+      )
+      line.style.setProperty('--line-color', color)
+      document.body.appendChild(line)
+    }
+  </script>
+</html>
