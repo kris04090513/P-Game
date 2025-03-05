@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lazy Loading 測試範例</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #2e2e2e;
+      }
+
+      .container {
+        padding-right: 0.75em;
+        padding-left: 0.75em;
+        margin-right: auto;
+        margin-left: auto;
+        max-width: 1140px;
+        min-width: 768px;
+      }
+      .container > .title {
+        position: sticky;
+        top: 0;
+        background-color: #2e2e2e;
+        padding: 1.5rem;
+      }
+      .container > .title > h2 {
+        color: #fffefe;
+      }
+      .container > .title > .btn-wrap {
+        display: flex;
+        justify-content: end;
+      }
+
+      .btn {
+        border: none;
+        padding: 0.8rem;
+        border-radius: 10px;
+        width: 8rem;
+        cursor: pointer;
+        color: #fffefe;
+        margin: 0 0.8rem;
+      }
+      .btn.btn-primary {
+        background-color: rgb(87, 140, 246);
+      }
+      .btn.btn.btn-primary:hover {
+        background-color: rgb(70, 125, 198);
+      }
+      .btn.btn-secondary {
+        background-color: rgb(245, 97, 89);
+      }
+      .btn.btn.btn-secondary:hover {
+        background-color: rgb(179, 71, 65);
+      }
+
+      #image-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .lazy-image {
+        width: 200px;
+        height: 200px;
+        margin: 10px;
+        background-color: #a13535;
+      }
+      .lazy-image.loaded {
+        background-color: transparent; /* 圖片載入後移除佔位符背景色 */
+      }
+      .back {
+        position: fixed;
+        right: 5%;
+        bottom: 5%;
+      }
+      .btn-back {
+        width: 60px;
+        height: 45px;
+        background-color: rgb(0, 0, 0);
+        border-radius: 5px;
+        padding: 10px 20px;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="back">
+      <a href="index.html" class="btn-back">back</a>
+    </div>
+    <div class="container">
+      <div class="title">
+        <h2>lazy-loading</h2>
+        <div class="btn-wrap">
+          <button id="stop-button" class="btn btn-secondary">停止</button>
+          <button id="start-button" class="btn btn-primary">接續開始</button>
+        </div>
+      </div>
+      <div id="image-container">
+        <img
+          src="https://fakeimg.pl/200x200/"
+          data-random-src="https://picsum.photos/200/200"
+          alt="隨機圖片"
+          class="lazy-image" />
+      </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const imageContainer = document.getElementById('image-container')
+        const lazyImages = document.querySelectorAll('.lazy-image')
+        const stopButton = document.getElementById('stop-button')
+        const startButton = document.getElementById('start-button')
+
+        let loading = false // 防止重複載入
+        let autoLoad = true // 控制自動載入的狀態
+        let scrollHandler // 儲存滾動事件處理器
+        /* 監測圖片是否進入可視區域 */
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const img = entry.target
+              img.src = img.dataset.randomSrc
+              img.classList.add('loaded')
+              observer.unobserve(img)
+            }
+          })
+        })
+
+        lazyImages.forEach((img) => {
+          observer.observe(img)
+        })
+
+        function addImages() {
+          if (loading || !autoLoad) return // 如果正在載入或自動載入已停止，則不執行
+          loading = true
+
+          for (let i = 0; i < 5; i++) {
+            // 一次新增 5 張圖片
+            const img = document.createElement('img')
+            img.src = 'https://fakeimg.pl/200x200/'
+            // img.dataset.randomSrc = 'https://fakeimg.pl/200x200/'
+            img.dataset.randomSrc = `https://picsum.photos/200/200?random=${Math.random()}` // 確保每次都取得新的隨機圖片
+            img.alt = '隨機圖片'
+            img.classList.add('lazy-image')
+            imageContainer.appendChild(img)
+            observer.observe(img)
+          }
+          loading = false
+        }
+
+        // 將滾動事件處理器儲存到 scrollHandler 變數
+        scrollHandler = function () {
+          if (
+            window.innerHeight + window.scrollY >=
+            document.body.offsetHeight - 100
+          ) {
+            addImages()
+          }
+        }
+
+        window.addEventListener('scroll', scrollHandler) // 使用儲存的處理器
+
+        /* 停止載入按鈕 */
+        stopButton.addEventListener('click', function () {
+          autoLoad = false
+          window.removeEventListener('scroll', scrollHandler) // 移除事件監聽器
+        })
+        /* 重新載入按鈕 */
+        startButton.addEventListener('click', function () {
+          autoLoad = true
+          window.addEventListener('scroll', scrollHandler) // 重新加入事件監聽器
+          addImages()
+        })
+      })
+    </script>
+  </body>
+</html>
